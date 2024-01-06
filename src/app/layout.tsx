@@ -3,6 +3,7 @@ import { Inter, Lato } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Container from "@/components/Container";
+import Providers from "@/lib/providers/Providers";
 
 const lato = Lato({
   subsets: ["latin-ext"],
@@ -21,10 +22,12 @@ export default function RootLayout({
   return (
     <html lang="pl-PL">
       <body className={lato.className}>
-        <Container>
-          <Header />
-          {children}
-        </Container>
+        <Providers>
+          <Container>
+            <Header />
+            {children}
+          </Container>
+        </Providers>
       </body>
     </html>
   );
