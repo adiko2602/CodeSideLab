@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Container from "@/components/Container";
 import Providers from "@/lib/providers/Providers";
+import Footer from "@/components/Footer";
 
 const lato = Lato({
   subsets: ["latin-ext"],
@@ -26,6 +27,7 @@ export default function RootLayout({
           <Container>
             <Header />
             {children}
+            <Footer />
           </Container>
         </Providers>
       </body>

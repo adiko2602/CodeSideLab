@@ -3,7 +3,9 @@ import PageContent from "@/components/PageContent";
 import Summator from "@/components/Summator";
 import AboutUs from "@/components/main/AboutUs";
 import MeetUs from "@/components/main/MeetUs";
+import Opinion from "@/components/main/Opinion";
 import OurOffer from "@/components/main/OurOffer";
+import WhyUs from "@/components/main/WhyUs";
 
 export default function Home() {
   return (
@@ -11,9 +13,9 @@ export default function Home() {
       <MeetUs />
       <OurOffer />
       <AboutUs />
-      <PageContent>
-        <div></div>
-        {/* <main className="grid grid-cols-1 md:grid-cols-4 p-2 gap-2">
+      <Opinion />
+      <WhyUs />
+      {/* <main className="grid grid-cols-1 md:grid-cols-4 p-2 gap-2">
         <div className="col-span-1">
           <Configurator />
         </div>
@@ -24,7 +26,6 @@ export default function Home() {
           <Summator />
         </div>
       </main> */}
-      </PageContent>
     </>
   );
 }
