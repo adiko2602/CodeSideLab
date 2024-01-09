@@ -3,6 +3,7 @@ import PageContent from "./PageContent";
 import Logo from "./Logo";
 import { Facebook, GithubIcon, Mail, Phone } from "lucide-react";
 import Link from "next/link";
+import { email, facebook, github, phone } from "@/lib/constants/constants";
 
 type TIcon = {
   color: string;
@@ -14,20 +15,22 @@ const icons: TIcon[] = [
   {
     color: "#1877F2",
     icon: <Facebook />,
-    href: "https://www.facebook.com/codesidelab",
+    href: facebook,
   },
   {
     color: "#c71610",
     icon: <Mail />,
+    href: `mailto:${email}`,
   },
   {
     color: "#08851b",
     icon: <Phone />,
+    href: `tel:${phone}`,
   },
   {
     color: "#2b3137",
     icon: <GithubIcon />,
-    href: "https://github.com/adiko2602/CodeSideLab",
+    href: github,
   },
 ];
 

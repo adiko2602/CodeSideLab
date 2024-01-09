@@ -2,6 +2,8 @@ import React from "react";
 import PageContent from "../PageContent";
 import { Button } from "../ui/button";
 import MeetUsCard from "./MeetUsCard";
+import Link from "next/link";
+import { phone } from "@/lib/constants/constants";
 
 export type TMeetUsCard = {
   image: string;
@@ -48,9 +50,11 @@ function MeetUs() {
               Poznaj nas, naszą pracę oraz nasze projekty!
             </div>
             <div className="flex gap-4">
-              <Button className="bg-green-700 hover:bg-green-600 rounded-none">
-                Zadzwoń
-              </Button>
+              <Link href={`tel:${phone}`}>
+                <Button className="bg-green-700 hover:bg-green-600 rounded-none">
+                  Zadzwoń
+                </Button>
+              </Link>
               <Button className="bg-green-700 hover:bg-green-600 rounded-none">
                 Skonfiguruj
               </Button>
