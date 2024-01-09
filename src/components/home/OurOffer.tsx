@@ -5,6 +5,7 @@ import PageContent from "../PageContent";
 import OurOfferCard from "./OurOfferCard";
 import useBrakepoint from "@/lib/hooks/useBrakepoint";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 export type TOurOfferCard = {
   title: string;
@@ -41,9 +42,11 @@ function Helper() {
       <div className="text-center">
         Oferujemy konkurencyjne stawki, bez ukrytych kosztów.
       </div>
-      <Button className="bg-green-700 hover:bg-green-600 rounded-none">
-        Skonfiguruj stronę dla siebie
-      </Button>
+      <Link href="/configure">
+        <Button className="bg-green-700 hover:bg-green-600 rounded-none">
+          Skonfiguruj stronę dla siebie
+        </Button>
+      </Link>
     </div>
   );
 }

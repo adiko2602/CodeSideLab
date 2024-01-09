@@ -5,7 +5,7 @@ import {
   configuratorSchema,
 } from "@/lib/forms/configuratorSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import {
   Form,
@@ -14,15 +14,13 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "./ui/form";
-import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
-import { Checkbox } from "./ui/checkbox";
+} from "../ui/form";
+import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
+import { Checkbox } from "../ui/checkbox";
 import { useConfiguratorContext } from "@/lib/hooks/useConfiguratorContext";
-import { Input } from "./ui/input";
+import { Input } from "../ui/input";
 
 function Configurator() {
-  const [type, setType] = useState<string>();
-
   const { handleSetValues, values } = useConfiguratorContext();
 
   const form = useForm<TConfiguratorSchema>({

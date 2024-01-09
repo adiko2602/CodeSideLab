@@ -16,7 +16,7 @@ export const navLinks: TNavLink[] = [
     label: "Strona główna",
   },
   {
-    href: "/pracing",
+    href: "/configure",
     label: "Wycena",
   },
   {

@@ -55,9 +55,11 @@ function MeetUs() {
                   Zadzwoń
                 </Button>
               </Link>
-              <Button className="bg-green-700 hover:bg-green-600 rounded-none">
-                Skonfiguruj
-              </Button>
+              <Link href="/configure">
+                <Button className="bg-green-700 hover:bg-green-600 rounded-none">
+                  Skonfiguruj
+                </Button>
+              </Link>
             </div>
           </div>
           <div className="col-span-1">
