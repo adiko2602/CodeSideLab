@@ -49,9 +49,8 @@ function ContactUs() {
       <PageContent>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {contactUsCards.map((card) => (
-            <div className="col-span-1">
+            <div className="col-span-1" key={card.content}>
               <ContactUsCard
-                key={card.content}
                 title={card.title}
                 link={card.link}
                 content={card.content}
