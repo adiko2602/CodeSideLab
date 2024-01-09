@@ -23,7 +23,7 @@ function AboutUsCard() {
             Razem stworzymy stronę, która wyróżni Twoją firmę w internecie!
           </div>
           <div>
-            <Button className="bg-green-700 hover:bg-green-600 rounded-xl">
+            <Button className="bg-green-700 hover:bg-green-600 rounded-none">
               Projekty
             </Button>
           </div>

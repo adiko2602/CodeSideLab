@@ -48,10 +48,10 @@ function MeetUs() {
               Poznaj nas, naszą pracę oraz nasze projekty!
             </div>
             <div className="flex gap-4">
-              <Button className="bg-green-700 hover:bg-green-600 rounded-xl">
+              <Button className="bg-green-700 hover:bg-green-600 rounded-none">
                 Zadzwoń
               </Button>
-              <Button className="bg-green-700 hover:bg-green-600 rounded-xl">
+              <Button className="bg-green-700 hover:bg-green-600 rounded-none">
                 Skonfiguruj
               </Button>
             </div>
