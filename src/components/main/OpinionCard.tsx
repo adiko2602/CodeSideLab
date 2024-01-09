@@ -17,7 +17,7 @@ function OpinionCard({ name, opinion }: TOpinionCard) {
       </CardHeader>
       <CardContent>
         <div className="flex w-full flex-col justify-center italic text-center">
-          "{opinion}"
+          {`"${opinion}"`}
         </div>
       </CardContent>
     </Card>
