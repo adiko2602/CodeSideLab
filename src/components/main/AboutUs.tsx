@@ -1,6 +1,7 @@
 import React from "react";
 import PageContent from "../PageContent";
 import AboutUsCard from "./AboutUsCart";
+import { Button } from "../ui/button";
 
 function AboutUs() {
   return (
@@ -14,6 +15,9 @@ function AboutUs() {
             <div className="text-center">
               Młodych, utalentowanych i gotowych do kodowania.
             </div>
+            <Button className="bg-green-700 hover:bg-green-600 rounded-none">
+              Projekty
+            </Button>
           </div>
           <div className="col-span-1">
             <AboutUsCard />

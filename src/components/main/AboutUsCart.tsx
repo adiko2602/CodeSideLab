@@ -22,11 +22,6 @@ function AboutUsCard() {
             jak najszybszym czasie co powoduje dobre opinie ze strony klientów.
             Razem stworzymy stronę, która wyróżni Twoją firmę w internecie!
           </div>
-          <div>
-            <Button className="bg-green-700 hover:bg-green-600 rounded-none">
-              Projekty
-            </Button>
-          </div>
         </div>
       </CardContent>
     </Card>
