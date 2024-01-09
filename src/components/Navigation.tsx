@@ -32,7 +32,11 @@ function Navigation() {
   return (
     <nav className="flex flex-row gap-4">
       {navLinks.map((navLink) => (
-        <Link key={navLink.href} href={navLink.href}>
+        <Link
+          key={navLink.href}
+          href={navLink.href}
+          className="  p-2 hover:border-b-2 hover:border-green-600 border-b-2 border-white border-opacity-0 transition"
+        >
           {navLink.label}
         </Link>
       ))}
