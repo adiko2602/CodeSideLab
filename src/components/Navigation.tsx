@@ -4,6 +4,7 @@ import useBrakepoint from "@/lib/hooks/useBrakepoint";
 import Link from "next/link";
 import React from "react";
 import NavigationDrawer from "./NavigationDrawer";
+import SignOutButton from "./SignOutButton";
 
 export type TNavLink = {
   href: string;
@@ -30,7 +31,7 @@ function Navigation() {
   if (brakepoint === "none" || brakepoint === "xs" || brakepoint === "sm")
     return <NavigationDrawer />;
   return (
-    <nav className="flex flex-row gap-4">
+    <div className="flex flex-row gap-4">
       {navLinks.map((navLink) => (
         <Link
           key={navLink.href}
@@ -40,7 +41,8 @@ function Navigation() {
           {navLink.label}
         </Link>
       ))}
-    </nav>
+      <SignOutButton />
+    </div>
   );
 }
 

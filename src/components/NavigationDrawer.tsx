@@ -10,6 +10,7 @@ import {
 import { Menu } from "lucide-react";
 import { navLinks } from "./Navigation";
 import Link from "next/link";
+import SignOutButton from "./SignOutButton";
 
 function NavigationDrawer() {
   return (
@@ -21,13 +22,14 @@ function NavigationDrawer() {
         <SheetHeader>
           <SheetTitle>Nawigacja</SheetTitle>
           <SheetDescription>
-            <nav className="flex flex-col gap-4 font-normal text-black text-lg pt-8">
+            <div className="flex flex-col gap-4 font-normal text-black text-lg pt-8">
               {navLinks.map((navLink) => (
                 <Link key={navLink.href} href={navLink.href}>
                   {navLink.label}
                 </Link>
               ))}
-            </nav>
+              <SignOutButton />
+            </div>
           </SheetDescription>
         </SheetHeader>
       </SheetContent>
