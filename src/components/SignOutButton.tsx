@@ -16,6 +16,7 @@ function SignOutButton() {
   const handleSignOut = async () => {
     setStatus("loading");
     await signOut({ redirect: false });
+    setStatus("idle");
     router.push("/auth/signin");
   };
 
