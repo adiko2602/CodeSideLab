@@ -16,6 +16,7 @@ function SignOutButton() {
   const handleSignOut = async () => {
     setStatus("loading");
     await signOut({ redirect: false });
+    setStatus("idle");
     router.push("/auth/signin");
   };
 
@@ -27,10 +28,12 @@ function SignOutButton() {
           onClick={handleSignOut}
           disabled={status === "loading"}
         >
-          {status === "loading" && (
-            <RotateCw className="h-4 w-4 animate-spin" />
-          )}
-          Wyloguj
+          <div className="flex items-center gap-1">
+            {status === "loading" && (
+              <RotateCw className="h-4 w-4 animate-spin" />
+            )}
+            Wyloguj
+          </div>
         </Button>
       )}
     </>
