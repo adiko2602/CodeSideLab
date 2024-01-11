@@ -1,8 +1,6 @@
-"use client";
-
 import * as z from "zod";
 
-export const adminCreateUserSchema = z.object({
+export const adminSignUpSchema = z.object({
   email: z
     .string({ required_error: "Adres email jest wymagany." })
     .email({ message: "Nieprawidłowy adres email." }),
@@ -11,4 +9,4 @@ export const adminCreateUserSchema = z.object({
     .min(8, { message: "Hasło musi zawierać minumum 8 znaków" }),
 });
 
-export type TAdminCreateUserSchema = z.infer<typeof adminCreateUserSchema>;
+export type TAdminSignUpSchema = z.infer<typeof adminSignUpSchema>;
