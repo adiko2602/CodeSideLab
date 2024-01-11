@@ -3,51 +3,18 @@ import {
   ServerResponse,
   SuccessResponse,
 } from "@/lib/api/Response";
-import {
-  TAdminSignUpSchema,
-  adminSignUpSchema,
-} from "@/lib/forms/adminSignUpSchema";
+import { TSignUpSchema, signUpSchema } from "@/lib/forms/signUpSchema";
 import { hash } from "@/lib/helpers/Password";
 import prisma from "@/lib/prisma/prismaClient";
 import { HttpStatusCode } from "axios";
 import { NextRequest } from "next/server";
 
-// get users
-export async function GET(req: NextRequest) {
-  try {
-    const users = await prisma.user.findMany({
-      select: {
-        id: true,
-        email: true,
-      },
-    });
-
-    if (!users || users.length === 0)
-      return ServerResponse.send(
-        new ErrorResponse("Nie znaleziono użytkowników"),
-        HttpStatusCode.BadRequest
-      );
-
-    return ServerResponse.send(
-      new SuccessResponse("Znaleziono użytkowników", users),
-      HttpStatusCode.Ok
-    );
-  } catch (err: unknown) {
-    return ServerResponse.send(
-      new ErrorResponse("Nieznany błąd"),
-      HttpStatusCode.BadRequest
-    );
-  } finally {
-    prisma.$disconnect();
-  }
-}
-
-// create user by admin
+// create new user
 export async function POST(req: NextRequest) {
-  const body: TAdminSignUpSchema = await req.json();
+  const body: TSignUpSchema = await req.json();
 
   try {
-    const result = adminSignUpSchema.safeParse(body);
+    const result = signUpSchema.safeParse(body);
 
     if (!result.success)
       return ServerResponse.send(
@@ -55,19 +22,25 @@ export async function POST(req: NextRequest) {
         HttpStatusCode.BadRequest
       );
 
+    if (body.passwords.password !== body.passwords.confirmedPassword)
+      return ServerResponse.send(
+        new ErrorResponse("Podane hasła nie są takie same"),
+        HttpStatusCode.BadRequest
+      );
     const userExist = await prisma.user.findUnique({
       where: {
         email: body.email,
       },
     });
 
-    if (userExist)
+    if (userExist) {
       return ServerResponse.send(
-        new ErrorResponse("Użytkownik już istnieje"),
-        HttpStatusCode.Conflict
+        new ErrorResponse(`Użytkownik już istnieje`),
+        HttpStatusCode.BadRequest
       );
+    }
 
-    const hashedPassword = await hash(body.password);
+    const hashedPassword = await hash(body.passwords.password);
 
     const userNew = await prisma.user.create({
       data: {

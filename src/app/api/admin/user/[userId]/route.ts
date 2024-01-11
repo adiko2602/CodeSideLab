@@ -1,7 +1,11 @@
-import { ErrorResponse, SuccessResponse } from "@/lib/api/Response";
+import {
+  ErrorResponse,
+  ServerResponse,
+  SuccessResponse,
+} from "@/lib/api/Response";
 import prisma from "@/lib/prisma/prismaClient";
 import { HttpStatusCode } from "axios";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 
 // get user
 export async function GET(
@@ -10,9 +14,10 @@ export async function GET(
 ) {
   const { userId } = params;
   if (!userId)
-    return NextResponse.json(new ErrorResponse("Brak wymaganych danych"), {
-      status: HttpStatusCode.BadRequest,
-    });
+    return ServerResponse.send(
+      new ErrorResponse("Brak wymaganych danych"),
+      HttpStatusCode.BadRequest
+    );
 
   try {
     const userExist = await prisma.user.findUnique({
@@ -26,18 +31,19 @@ export async function GET(
     });
 
     if (!userExist)
-      return NextResponse.json(
+      return ServerResponse.send(
         new ErrorResponse("Nie znaleziono użytkownika"),
-        { status: HttpStatusCode.BadRequest }
+        HttpStatusCode.BadRequest
       );
-    return NextResponse.json(
+    return ServerResponse.send(
       new SuccessResponse("Znaleziono użytkownika", userExist),
-      { status: HttpStatusCode.Ok }
+      HttpStatusCode.Ok
     );
   } catch (err: unknown) {
-    return NextResponse.json(new ErrorResponse("Nieznany błąd"), {
-      status: HttpStatusCode.BadRequest,
-    });
+    return ServerResponse.send(
+      new ErrorResponse("Nieznany błąd"),
+      HttpStatusCode.BadRequest
+    );
   } finally {
     prisma.$disconnect();
   }
@@ -50,9 +56,10 @@ export async function DELETE(
 ) {
   const { userId } = params;
   if (!userId)
-    return NextResponse.json(new ErrorResponse("Brak wymaganych danych"), {
-      status: HttpStatusCode.BadRequest,
-    });
+    return ServerResponse.send(
+      new ErrorResponse("Brak wymaganych danych"),
+      HttpStatusCode.BadRequest
+    );
 
   try {
     await prisma.user.delete({
@@ -61,14 +68,15 @@ export async function DELETE(
       },
     });
 
-    return NextResponse.json(
+    return ServerResponse.send(
       new SuccessResponse("Usunięto użytkownika", null),
-      { status: HttpStatusCode.Ok }
+      HttpStatusCode.Ok
     );
   } catch (err: unknown) {
-    return NextResponse.json(new ErrorResponse("Nieznany błąd"), {
-      status: HttpStatusCode.BadRequest,
-    });
+    return ServerResponse.send(
+      new ErrorResponse("Nieznany błąd"),
+      HttpStatusCode.BadRequest
+    );
   } finally {
     prisma.$disconnect();
   }
