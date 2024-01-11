@@ -5,8 +5,10 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { Button } from "./ui/button";
 import { RotateCw } from "lucide-react";
+import { useQueryClient } from "@tanstack/react-query";
 
 function SignOutButton() {
+  const queryClient = useQueryClient();
   const { data: session } = useSession();
   const router = useRouter();
   const [status, setStatus] = useState<
@@ -16,6 +18,7 @@ function SignOutButton() {
   const handleSignOut = async () => {
     setStatus("loading");
     await signOut({ redirect: false });
+    queryClient.removeQueries();
     setStatus("idle");
     router.push("/auth/signin");
   };
