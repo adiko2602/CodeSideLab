@@ -1,20 +1,30 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { Response } from "./Response";
 
-function Get<T>(url: string) {
-  return axios.get<Response<T>>(url);
+async function Get<ResponseReturnType>(
+  url: string
+): Promise<AxiosResponse<Response<ResponseReturnType>>> {
+  return axios.get<Response<ResponseReturnType>>(url);
 }
 
-function Post<T, V>(url: string, body: V) {
-  return axios.post<Response<T>>(url, body);
+function Post<BodyType, ResponseReturnType>(
+  url: string,
+  body: BodyType
+): Promise<AxiosResponse<Response<ResponseReturnType>>> {
+  return axios.post<Response<ResponseReturnType>>(url, body);
 }
 
-function Patch<T, V>(url: string, body: V) {
-  return axios.patch<Response<T>>(url, body);
+async function Patch<BodyType, ResponseReturnType>(
+  url: string,
+  body: BodyType
+): Promise<AxiosResponse<Response<ResponseReturnType>>> {
+  return axios.patch<Response<ResponseReturnType>>(url, body);
 }
 
-function Remove<T>(url: string) {
-  return axios.delete<Response<T>>(url);
+async function Remove<ResponseReturnType>(
+  url: string
+): Promise<AxiosResponse<Response<ResponseReturnType>>> {
+  return axios.delete<Response<ResponseReturnType>>(url);
 }
 
 const Requests = {
