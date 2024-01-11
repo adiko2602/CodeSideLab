@@ -1,19 +1,42 @@
-export class Response<T> {
+import { HttpStatusCode } from "axios";
+import { NextResponse } from "next/server";
+
+export class Response<ResponseDataType> {
   constructor(
     public success: boolean,
     public message: string,
-    public data?: T
+    public data?: ResponseDataType
   ) {}
 }
 
-export class SuccessResponse<T> extends Response<T> {
-  constructor(message: string, data: T) {
+export class SuccessResponse<
+  ResponseDataType
+> extends Response<ResponseDataType> {
+  constructor(message: string, data: ResponseDataType) {
     super(true, message, data);
   }
 }
 
-export class ErrorResponse<T = undefined> extends Response<T> {
-  constructor(message: string) {
-    super(false, message);
+export class ErrorResponse<
+  ResponseDataType
+> extends Response<ResponseDataType> {
+  constructor(message: string, data?: ResponseDataType | undefined) {
+    super(false, message, data);
+  }
+}
+
+export class ServerResponse<ResponseDataType> {
+  private constructor(
+    private res: Response<ResponseDataType>,
+    private status: HttpStatusCode
+  ) {}
+
+  static send<ResponseDataType>(
+    res: Response<ResponseDataType>,
+    status: HttpStatusCode
+  ) {
+    return NextResponse.json(res, {
+      status: status,
+    });
   }
 }
